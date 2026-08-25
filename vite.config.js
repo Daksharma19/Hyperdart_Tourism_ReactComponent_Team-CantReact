@@ -6,6 +6,12 @@ import pkg from './package.json';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import hdConfig from './hyperdart.config';
 import hDBackend from '@hyperdart/backend';
+import dotenv from 'dotenv';
+
+// Secrets live in the (non-standard) `env` file at the project root, so Vite's
+// built-in .env loading never picks them up. Parse it explicitly and expose the
+// keys as compile-time globals for src/frontend/NewComponent.jsx.
+const { parsed: hdEnv = {} } = dotenv.config({ path: path.resolve(process.cwd(), 'env') });
 
 function createDartFramePlugin(hdConfig, pkg) {
   const baseURL = hdConfig?.client?.baseURL || "/";
@@ -54,6 +60,9 @@ export default defineConfig(({ command }) => {
     ],
     define: {
       'process.env.NODE_ENV': JSON.stringify(isProduction ? 'production' : 'development'),
+      __GEOAPIFY_API_KEY__: JSON.stringify(hdEnv.GEOAPIFY_API_KEY || ''),
+      __PEXELS_API_KEY__: JSON.stringify(hdEnv.PEXELS_API_KEY || ''),
+      __GOOGLE_PLACES_API_KEY__: JSON.stringify(hdEnv.GOOGLE_PLACES_API_KEY || ''),
     },
     server: {
       cors: true,
