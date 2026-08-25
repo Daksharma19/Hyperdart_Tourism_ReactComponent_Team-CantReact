@@ -1,0 +1,7 @@
+{
+  "title": "Tourism Explorer",
+  "description": "Find tourism sights, landmarks, museums, monuments, historical places, and viewpoints near a resolved city. Restaurants, lodging, and shopping are outside this component's scope.",
+  "embeddingExamples": ["Tourist attractions in NYC", "Things to do in Paris", "Places to visit in Kyoto", "Landmarks in Rome", "Sights near Tokyo", "Points of interest in London"],
+  "componentScope": {"supportedIntents": [{"intent": "tourism-explorer", "description": "Tourism-related points of interest around a city.", "example": ["Landmarks in Rome", "Things to do in Paris"]}]},
+  "schema": {"type": "object", "properties": {"type": {"type": "string", "enum": ["list"]}, "filters": {"type": "object", "properties": {"city": {"type": "string"}, "category": {"type": "string", "enum": ["tourism.sights"]}}, "required": ["city", "category"]}, "features": {"type": "array", "items": {"type": "string", "enum": ["name", "categories", "coordinates", "description", "formatted"]}}, "entities": {"type": "object", "properties": {"collections": {"type": "array", "items": {"type": "string", "enum": ["HD_LOCATION"]}}}}}, "required": ["type", "filters", "features", "entities"]}
+}

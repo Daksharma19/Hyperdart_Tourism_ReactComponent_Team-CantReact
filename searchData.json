@@ -1,0 +1,26 @@
+[
+  {
+    "component": "template",
+    "entities": [
+      {
+        "word": "Paris",
+        "collectionType": "HD_LOCATION",
+        "entityType": "LOCATION",
+        "entityInfo": {
+          "geo": {
+            "city": "Paris",
+            "state": "Ile-de-France",
+            "country": "France",
+            "lat": 48.8566,
+            "long": 2.3522
+          }
+        }
+      }
+    ],
+    "query": "Things to do in Paris",
+    "componentEnabled": true,
+    "keyword": [{ "word": "things to do", "description": "" }],
+    "queryRegex": "things\\s+to\\s+do\\s+(in|near)\\s+HD_LOCATION.*",
+    "componentType": "internal"
+  }
+]
